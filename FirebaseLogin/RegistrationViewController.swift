@@ -1,0 +1,72 @@
+//
+//  RegistrationViewController.swift
+//  FirebaseLogin
+//
+//  Created by Sanket Ray on 30/10/17.
+//  Copyright © 2017 Sanket Ray. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
+
+    @IBOutlet weak var fullName: UITextField!
+    @IBOutlet weak var emailID: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var location: UITextField!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        fullName.delegate = self
+        emailID.delegate = self
+        password.delegate = self
+        location.delegate = self
+        
+    }
+
+    @IBAction func register(_ sender: Any) {
+        guard let name = fullName.text else {
+            return
+        }
+        guard let email = emailID.text else {
+            return
+        }
+        guard let password = password.text else {
+            return
+        }
+        guard let location = location.text else {
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                return
+            }
+            // registration successful
+            guard let uid = user?.uid else {
+                return
+            }
+            let userReference = databaseRef.child("users").child(uid)
+            let values = ["username":name,"email":email,"pic":"","location":location]
+            
+            userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                if error != nil {
+                    return
+                }
+                // successfully saved user details
+                let controller = self.storyboard?.instantiateViewController(withIdentifier: "HomeScreen") as! HomeScreenViewController
+                self.present(controller, animated: true, completion: nil)
+            })
+        }
+        
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}
