@@ -19,18 +19,19 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
     
     }
     override func viewWillAppear(_ animated: Bool) {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                //    Set up Homescreen
-                self.setupProfile()
-            }
-            else {
-                // user hasn't logged in yet
-                self.logout()
+        if !loggedInUsingFacebook {
+            Auth.auth().addStateDidChangeListener { (auth, user) in
+                if user != nil {
+                    //    Set up Homescreen
+                    self.setupProfile()
+                }
+                else {
+                    // user hasn't logged in yet
+                    self.logout()
+                }
             }
         }
     }
-
     @IBAction func uploadImage(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -45,17 +46,21 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
             storedImage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     //handle error
+                    print("🥒",error?.localizedDescription)
                     return
                 }
                 storedImage.downloadURL(completion: { (url, error) in
                     if error != nil {
+                        print("🥕",error?.localizedDescription)
                         return
                     }
                     if let urlText = url?.absoluteString {
                         databaseRef.child("users").child(uid!).updateChildValues(["pic": urlText], withCompletionBlock: { (error, ref) in
                             if error != nil {
+                                print("🌽",error?.localizedDescription)
                                 return
                             }
+                            print("🥖Successfully added image to database🥖")
                         })
                     }
                 })
