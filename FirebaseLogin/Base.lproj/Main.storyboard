@@ -225,7 +225,7 @@
                                     <action selector="logout:" destination="hv7-WE-0mW" eventType="touchUpInside" id="9xd-ic-7TR"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sot-fK-1kh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="sot-fK-1kh">
                                 <rect key="frame" x="123" y="76" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="3ZR-xe-lDo"/>
@@ -297,6 +297,9 @@
             <point key="canvasLocation" x="737" y="906"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="default-image" width="250" height="250"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WpY-of-u8v"/>
     </inferredMetricsTieBreakers>

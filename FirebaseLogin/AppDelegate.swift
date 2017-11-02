@@ -21,13 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         if (UserDefaults.standard.object(forKey: "uid") == nil) {
-            
-//            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
-//            let nav = UINavigationController(rootViewController: controller)
-//            window?.rootViewController = nav
-            
-//            BOTH OF THESE WORK!
-            
             window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
         }
         
