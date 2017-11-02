@@ -6,6 +6,7 @@ target 'FirebaseLogin' do
   use_frameworks!
 
   # Pods for FirebaseLogin
+pod 'FirebaseInstanceID'
 pod ‘Firebase/Core’
 pod ‘Firebase/Auth’
 pod ‘Firebase/Database’

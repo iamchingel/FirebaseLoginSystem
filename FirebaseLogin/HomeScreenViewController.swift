@@ -13,24 +13,21 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userDetails: UITextView!
+    var uid : String?
+    var uidFromUserDefaults: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        if let value = UserDefaults.standard.object(forKey: "uid")   {
+            print("🥩🥩🥩🥩",value,"🥩🥩🥩🥩🥩")
+            uid = value as? String
+        }
+        setupProfile()
+
     }
     override func viewWillAppear(_ animated: Bool) {
-        if !loggedInUsingFacebook {
-            Auth.auth().addStateDidChangeListener { (auth, user) in
-                if user != nil {
-                    //    Set up Homescreen
-                    self.setupProfile()
-                }
-                else {
-                    // user hasn't logged in yet
-                    self.logout()
-                }
-            }
-        }
+
     }
     @IBAction func uploadImage(_ sender: Any) {
         let picker = UIImagePickerController()
@@ -40,31 +37,33 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         self.present(picker, animated: true, completion: nil)
     }
     @IBAction func saveImage(_ sender: Any) {
-        let imageName = NSUUID().uuidString
-        let storedImage = storageRef.child("profileImage").child(imageName)
-        if let uploadData = UIImagePNGRepresentation(profileImage.image!) {
-            storedImage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    //handle error
-                    print("🥒",error?.localizedDescription)
-                    return
-                }
-                storedImage.downloadURL(completion: { (url, error) in
+        if profileImage.image != nil {
+            let imageName = NSUUID().uuidString
+            let storedImage = storageRef.child("profileImage").child(imageName)
+            if let uploadData = UIImagePNGRepresentation(profileImage.image!) {
+                storedImage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     if error != nil {
-                        print("🥕",error?.localizedDescription)
+                        //handle error
+                        print("🥒",error?.localizedDescription)
                         return
                     }
-                    if let urlText = url?.absoluteString {
-                        databaseRef.child("users").child(uid!).updateChildValues(["pic": urlText], withCompletionBlock: { (error, ref) in
-                            if error != nil {
-                                print("🌽",error?.localizedDescription)
-                                return
-                            }
-                            print("🥖Successfully added image to database🥖")
-                        })
-                    }
+                    storedImage.downloadURL(completion: { (url, error) in
+                        if error != nil {
+                            print("🥕",error?.localizedDescription)
+                            return
+                        }
+                        if let urlText = url?.absoluteString {
+                            databaseRef.child("users").child(self.uid!).updateChildValues(["pic": urlText], withCompletionBlock: { (error, ref) in
+                                if error != nil {
+                                    print("🌽",error?.localizedDescription)
+                                    return
+                                }
+                                print("🥖Successfully added image to database🥖")
+                            })
+                        }
+                    })
                 })
-            })
+            }
         }
     }
     
@@ -82,6 +81,7 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func logout(_ sender: Any) {
         try! Auth.auth().signOut()
+        UserDefaults.standard.set(nil, forKey: "uid")
         logout()
     }
     func setupProfile() {
@@ -101,16 +101,15 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
                         self.profileImage.image = UIImage(data : imageData)
                     }
                 }
-                
             }
         }
 
     }
     
     func logout() {
-        print("Need to logout")
-        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginNC")
-        present(controller!, animated: true, completion: nil)
+        print("🍇🍇🍇Need to logout🍇🍇🍇🍇")
+        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+        present(controller, animated: true, completion: nil)
     }
 
 }

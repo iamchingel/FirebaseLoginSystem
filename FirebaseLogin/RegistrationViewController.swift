@@ -16,6 +16,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var location: UITextField!
     
+    var userUniqueID : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             guard let uid = user?.uid else {
                 return
             }
+            self.userUniqueID = uid
+            UserDefaults.standard.set(uid, forKey: "uid")
+            
             let userReference = databaseRef.child("users").child(uid)
             let values = ["username":name,"email":email,"pic":"","location":location]
             
@@ -58,8 +62,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 // successfully saved user details
-                let controller = self.storyboard?.instantiateViewController(withIdentifier: "HomeScreen") as! HomeScreenViewController
-                self.present(controller, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "RegistrationComplete", sender: self)
             })
         }
         
@@ -67,6 +70,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationController = segue.destination as! HomeScreenViewController
+        destinationController.uid = userUniqueID
     }
     
 }

@@ -16,6 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signInEmail: UITextField!
     @IBOutlet weak var signInPassword: UITextField!
     
+    var uniqueID : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +47,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             //handle error
                 return
             }
+            self.uniqueID = user?.uid
             //success logging in
-            let controller = self.storyboard?.instantiateViewController(withIdentifier: "HomeScreen") as! HomeScreenViewController
-            self.present(controller, animated: true, completion: nil)
+            UserDefaults.standard.set(user?.uid, forKey: "uid") // Saving the uid to Userdefaults
+            
+            self.performSegue(withIdentifier: "LoginWithEmail", sender: self)
+            
         }
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginWithEmail" {
+            let destinationController = segue.destination as! HomeScreenViewController
+            destinationController.uid = uniqueID
+        }
+        if segue.identifier == "LoginWithFB" {
+            let destinationController = segue.destination as! HomeScreenViewController
+            destinationController.uid = uniqueID
+        }
+    }
+    
+    
     func facebookLogin() {
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, error) in
             if error != nil {
@@ -64,7 +80,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard let accessTokenString = accessToken?.tokenString else {
                 return
             }
-            print("🥒",accessTokenString,"🥒")
 
             let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
             
@@ -73,15 +88,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     print("Something went wrong with FB user", error?.localizedDescription)
                     return
                 }
-                print("Successfully logged in with user")
-            })
-            
-            
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,email,picture.type(large)"]).start { (connection, result, error) in
-                if error == nil {
-                    print(result)
+                print("Successfully logged in with user",Auth.auth().currentUser?.uid,"🍇")
+                
+                self.uniqueID = (Auth.auth().currentUser?.uid)!
+                UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "uid")
+                
+                FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,email,picture.type(large)"]).start { (connection, result, error) in
+                    guard error == nil else {
+                        print("Found an error: \(error?.localizedDescription)")
+                        return
+                    }
+                    guard let result = result as? [String: Any] else {
+                        print("Error getting detail results of User")
+                        return
+                    }
+                    guard let email = result["email"] as? String else {
+                        print("Could not get email id")
+                        return
+                    }
+                    guard let username = result["name"] as? String else {
+                        print("Could not get username")
+                        return
+                    }
+                    guard let picture = result["picture"] as? [String:Any] else {
+                        print("Getting picture details")
+                        return
+                    }
+                    guard let pictureData = picture["data"] as? [String:Any] else {
+                        print("Error getting picture data")
+                        return
+                    }
+                    guard let pictureURL = pictureData["url"] as? String else {
+                        print("Error getting the picture URL")
+                        return
+                    }
+                    self.saveUserInfoToFirebase(name: username, url: pictureURL, email: email, uid : (Auth.auth().currentUser?.uid)!)
                 }
-            }
+            })
+   
         }
     }
     
@@ -90,5 +134,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func saveUserInfoToFirebase(name : String, url : String, email: String, uid: String) {
+        
+        let userReference = databaseRef.child("users").child(uid)
+        let values = ["username":name,"email":email,"pic":url,"location":""]
+        userReference.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+           self.performSegue(withIdentifier: "LoginWithFB", sender: self)
+        }
+    }
 
 }

@@ -20,6 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
 
+        if (UserDefaults.standard.object(forKey: "uid") == nil) {
+            
+//            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
+//            let nav = UINavigationController(rootViewController: controller)
+//            window?.rootViewController = nav
+            
+//            BOTH OF THESE WORK!
+            
+            window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+        }
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         return true
