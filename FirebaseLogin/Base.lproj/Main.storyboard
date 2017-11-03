@@ -33,7 +33,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKT-0H-XGm">
                                 <rect key="frame" x="16" y="522" width="343" height="45"/>
-                                <color key="backgroundColor" red="0.92156862745098034" green="0.3411764705882353" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91640263795852661" green="0.34044361114501953" blue="0.5671958327293396" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="cFE-AZ-NiW"/>
                                 </constraints>
@@ -301,6 +301,6 @@
         <image name="default-image" width="250" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WpY-of-u8v"/>
+        <segue reference="qyY-oE-4xU"/>
     </inferredMetricsTieBreakers>
 </document>

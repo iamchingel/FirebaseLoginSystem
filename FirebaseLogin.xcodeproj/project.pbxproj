@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19FD31361FAC58CB0091D2CE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FD31351FAC58CB0091D2CE /* SWRevealViewController.m */; };
 		6A1C0A713C540D31925C7149 /* Pods_FirebaseLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632C03317B60C0F2DDA368CD /* Pods_FirebaseLogin.framework */; };
 		C84D10251FA787860040B09B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D10241FA787860040B09B /* AppDelegate.swift */; };
 		C84D102A1FA787860040B09B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C84D10281FA787860040B09B /* Main.storyboard */; };
@@ -20,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19FD31331FAC58C80091D2CE /* FirebaseLogin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirebaseLogin-Bridging-Header.h"; sourceTree = "<group>"; };
+		19FD31341FAC58CA0091D2CE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		19FD31351FAC58CB0091D2CE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5658E565BF6C0B26CAE99C7C /* Pods-FirebaseLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseLogin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseLogin/Pods-FirebaseLogin.debug.xcconfig"; sourceTree = "<group>"; };
 		632C03317B60C0F2DDA368CD /* Pods_FirebaseLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F32618F502FBB1D61C14D6 /* Pods-FirebaseLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseLogin.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseLogin/Pods-FirebaseLogin.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +102,9 @@
 				C84D102D1FA787860040B09B /* LaunchScreen.storyboard */,
 				C84D103C1FA7A87B0040B09B /* GoogleService-Info.plist */,
 				C84D10301FA787860040B09B /* Info.plist */,
+				19FD31341FAC58CA0091D2CE /* SWRevealViewController.h */,
+				19FD31351FAC58CB0091D2CE /* SWRevealViewController.m */,
+				19FD31331FAC58C80091D2CE /* FirebaseLogin-Bridging-Header.h */,
 			);
 			path = FirebaseLogin;
 			sourceTree = "<group>";
@@ -137,6 +144,7 @@
 				TargetAttributes = {
 					C84D10201FA787860040B09B = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -256,6 +264,7 @@
 				C84D10371FA788640040B09B /* LoginViewController.swift in Sources */,
 				C84D103F1FA7BD740040B09B /* References.swift in Sources */,
 				C84D10251FA787860040B09B /* AppDelegate.swift in Sources */,
+				19FD31361FAC58CB0091D2CE /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +402,7 @@
 			baseConfigurationReference = 5658E565BF6C0B26CAE99C7C /* Pods-FirebaseLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FirebaseLogin/FirebaseLogin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4H33JVA49;
@@ -400,6 +410,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Chingel.FirebaseLogin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FirebaseLogin/FirebaseLogin-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -410,6 +422,7 @@
 			baseConfigurationReference = 68F32618F502FBB1D61C14D6 /* Pods-FirebaseLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FirebaseLogin/FirebaseLogin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4H33JVA49;
@@ -417,6 +430,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Chingel.FirebaseLogin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FirebaseLogin/FirebaseLogin-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

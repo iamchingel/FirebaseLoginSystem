@@ -44,18 +44,18 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
                 storedImage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     if error != nil {
                         //handle error
-                        print("🥒",error?.localizedDescription)
+                        print("🥒",error?.localizedDescription ?? "")
                         return
                     }
                     storedImage.downloadURL(completion: { (url, error) in
                         if error != nil {
-                            print("🥕",error?.localizedDescription)
+                            print("🥕",error?.localizedDescription ?? "")
                             return
                         }
                         if let urlText = url?.absoluteString {
                             databaseRef.child("users").child(self.uid!).updateChildValues(["pic": urlText], withCompletionBlock: { (error, ref) in
                                 if error != nil {
-                                    print("🌽",error?.localizedDescription)
+                                    print("🌽",error?.localizedDescription ?? "")
                                     return
                                 }
                                 print("🥖Successfully added image to database🥖")
@@ -96,11 +96,14 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
                     print("Image URL not found")
                     return
                 }
-                if let imageData = try? Data(contentsOf : url) {
-                    DispatchQueue.main.async {
-                        self.profileImage.image = UIImage(data : imageData)
+                let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                    if error == nil {
+                        DispatchQueue.main.async {
+                            self.profileImage.image = UIImage(data: data!)
+                        }
                     }
-                }
+                })
+                task.resume()
             }
         }
 
