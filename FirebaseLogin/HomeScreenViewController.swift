@@ -14,7 +14,6 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userDetails: UITextView!
     var uid : String?
-    var uidFromUserDefaults: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +25,7 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         setupProfile()
 
     }
-    override func viewWillAppear(_ animated: Bool) {
 
-    }
     @IBAction func uploadImage(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self

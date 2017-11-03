@@ -71,9 +71,5 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationController = segue.destination as! HomeScreenViewController
-        destinationController.uid = userUniqueID
-    }
     
 }

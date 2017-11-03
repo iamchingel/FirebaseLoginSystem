@@ -56,17 +56,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginWithEmail" {
-            let destinationController = segue.destination as! HomeScreenViewController
-            destinationController.uid = uniqueID
-        }
-        if segue.identifier == "LoginWithFB" {
-            let destinationController = segue.destination as! HomeScreenViewController
-            destinationController.uid = uniqueID
-        }
-    }
-    
     
     func facebookLogin() {
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, error) in

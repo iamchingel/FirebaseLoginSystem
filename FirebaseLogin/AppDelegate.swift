@@ -29,13 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        //        BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-        //            openURL:url
-        //            sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-        //            annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-        //        ];
-        
+
         let handled: Bool = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[.annotation])
         // Add any custom logic here.
         return handled
