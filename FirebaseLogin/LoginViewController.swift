@@ -51,7 +51,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             //success logging in
             UserDefaults.standard.set(user?.uid, forKey: "uid") // Saving the uid to Userdefaults
             
-            self.performSegue(withIdentifier: "LoginWithEmail", sender: self)
+            self.performSegue(withIdentifier: "FromLoginToHomeVC", sender: self)
             
         }
         
@@ -129,10 +129,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let values = ["username":name,"email":email,"pic":url,"location":""]
         userReference.updateChildValues(values) { (error, ref) in
             if error != nil {
-                print(error?.localizedDescription)
+                print("\(String(describing: error?.localizedDescription))")
                 return
             }
-           self.performSegue(withIdentifier: "LoginWithFB", sender: self)
+           self.performSegue(withIdentifier: "FromLoginToHomeVC", sender: self)
         }
     }
 

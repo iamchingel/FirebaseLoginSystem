@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hv7-WE-0mW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iNk-GM-PxL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -104,13 +104,12 @@
                     <connections>
                         <outlet property="signInEmail" destination="NU5-Hk-Ez4" id="RbE-S8-LSM"/>
                         <outlet property="signInPassword" destination="PYy-Hy-Xvr" id="iYg-DQ-lnr"/>
-                        <segue destination="hv7-WE-0mW" kind="show" identifier="LoginWithEmail" id="w5Z-lM-fWm"/>
-                        <segue destination="hv7-WE-0mW" kind="show" identifier="LoginWithFB" id="qyY-oE-4xU"/>
+                        <segue destination="iNk-GM-PxL" kind="show" identifier="FromLoginToHomeVC" id="Mbs-Fz-cSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="133.5832083958021"/>
+            <point key="canvasLocation" x="15" y="134"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="y4A-BD-M2K">
@@ -196,17 +195,17 @@
                         <outlet property="fullName" destination="lMb-tO-Snh" id="Hll-Vs-qVT"/>
                         <outlet property="location" destination="TkA-KY-vZ0" id="egc-RU-Q4T"/>
                         <outlet property="password" destination="UfC-bw-wfa" id="iqi-u9-xjT"/>
-                        <segue destination="hv7-WE-0mW" kind="show" identifier="RegistrationComplete" id="WpY-of-u8v"/>
+                        <segue destination="iNk-GM-PxL" kind="show" identifier="RegistrationToHomeVC" id="26R-tm-omJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aVY-es-en7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1118" y="134"/>
+            <point key="canvasLocation" x="927" y="134"/>
         </scene>
-        <!--Home Screen View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="I7e-Lb-0WF">
             <objects>
-                <viewController storyboardIdentifier="HomeScreen" id="hv7-WE-0mW" customClass="HomeScreenViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeScreen" id="hv7-WE-0mW" customClass="ProfileViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="izA-3M-XXZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -294,13 +293,69 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hst-yH-Z1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="737" y="906"/>
+            <point key="canvasLocation" x="926" y="903"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="Hja-gs-ZMF">
+            <objects>
+                <viewController id="iNk-GM-PxL" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZeE-ax-RSm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92148774862289429" green="0.92162030935287476" blue="0.92145884037017822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="G3h-fw-4AE"/>
+                    </view>
+                    <connections>
+                        <segue destination="LaO-h5-InG" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="3EW-K8-pxI"/>
+                        <segue destination="hv7-WE-0mW" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="xlq-Im-O1H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rtb-eJ-cei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="903"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="adE-M4-peP">
+            <objects>
+                <navigationController id="LaO-h5-InG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CLY-WC-gjh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Z9h-u4-LlS" kind="relationship" relationship="rootViewController" id="bnW-0w-GdQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7z-x1-bGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="1648"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="YIa-Wc-McR">
+            <objects>
+                <viewController id="Z9h-u4-LlS" customClass="HomeViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hcL-ic-tg7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="0xb-7W-U3z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lSZ-tN-LqX">
+                        <barButtonItem key="leftBarButtonItem" title="Open" id="Ub8-5S-fRZ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="open" destination="Ub8-5S-fRZ" id="gv3-4X-5hB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b0I-Lz-ihD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="1648"/>
         </scene>
     </scenes>
     <resources>
         <image name="default-image" width="250" height="250"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qyY-oE-4xU"/>
+        <segue reference="Mbs-Fz-cSa"/>
     </inferredMetricsTieBreakers>
 </document>

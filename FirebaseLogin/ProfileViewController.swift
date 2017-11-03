@@ -1,5 +1,5 @@
 //
-//  HomeScreenViewController.swift
+//  ProfileViewController.swift
 //  FirebaseLogin
 //
 //  Created by Sanket Ray on 30/10/17.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userDetails: UITextView!
@@ -41,18 +41,18 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
                 storedImage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     if error != nil {
                         //handle error
-                        print("🥒",error?.localizedDescription ?? "")
+                        print("🥒","\(String(describing: error?.localizedDescription))")
                         return
                     }
                     storedImage.downloadURL(completion: { (url, error) in
                         if error != nil {
-                            print("🥕",error?.localizedDescription ?? "")
+                            print("🥕","\(String(describing: error?.localizedDescription))")
                             return
                         }
                         if let urlText = url?.absoluteString {
                             databaseRef.child("users").child(self.uid!).updateChildValues(["pic": urlText], withCompletionBlock: { (error, ref) in
                                 if error != nil {
-                                    print("🌽",error?.localizedDescription ?? "")
+                                    print("🌽","\(String(describing: error?.localizedDescription))")
                                     return
                                 }
                                 print("🥖Successfully added image to database🥖")

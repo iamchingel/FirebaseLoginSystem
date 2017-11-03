@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1968A8031FACCFE100E8C7FD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1968A8021FACCFE100E8C7FD /* HomeViewController.swift */; };
 		19FD31361FAC58CB0091D2CE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FD31351FAC58CB0091D2CE /* SWRevealViewController.m */; };
 		6A1C0A713C540D31925C7149 /* Pods_FirebaseLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632C03317B60C0F2DDA368CD /* Pods_FirebaseLogin.framework */; };
 		C84D10251FA787860040B09B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D10241FA787860040B09B /* AppDelegate.swift */; };
@@ -15,12 +16,13 @@
 		C84D102F1FA787860040B09B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C84D102D1FA787860040B09B /* LaunchScreen.storyboard */; };
 		C84D10371FA788640040B09B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D10361FA788640040B09B /* LoginViewController.swift */; };
 		C84D10391FA7A4CB0040B09B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D10381FA7A4CB0040B09B /* RegistrationViewController.swift */; };
-		C84D103B1FA7A4D90040B09B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D103A1FA7A4D90040B09B /* HomeScreenViewController.swift */; };
+		C84D103B1FA7A4D90040B09B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D103A1FA7A4D90040B09B /* ProfileViewController.swift */; };
 		C84D103D1FA7A87B0040B09B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C84D103C1FA7A87B0040B09B /* GoogleService-Info.plist */; };
 		C84D103F1FA7BD740040B09B /* References.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D103E1FA7BD740040B09B /* References.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1968A8021FACCFE100E8C7FD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		19FD31331FAC58C80091D2CE /* FirebaseLogin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirebaseLogin-Bridging-Header.h"; sourceTree = "<group>"; };
 		19FD31341FAC58CA0091D2CE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		19FD31351FAC58CB0091D2CE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -35,7 +37,7 @@
 		C84D10301FA787860040B09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C84D10361FA788640040B09B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C84D10381FA7A4CB0040B09B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		C84D103A1FA7A4D90040B09B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		C84D103A1FA7A4D90040B09B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C84D103C1FA7A87B0040B09B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C84D103E1FA7BD740040B09B /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
 		C86ED32C1FA8A8010014A08B /* FirebaseLogin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FirebaseLogin.entitlements; sourceTree = "<group>"; };
@@ -96,7 +98,8 @@
 				C84D103E1FA7BD740040B09B /* References.swift */,
 				C84D10361FA788640040B09B /* LoginViewController.swift */,
 				C84D10381FA7A4CB0040B09B /* RegistrationViewController.swift */,
-				C84D103A1FA7A4D90040B09B /* HomeScreenViewController.swift */,
+				C84D103A1FA7A4D90040B09B /* ProfileViewController.swift */,
+				1968A8021FACCFE100E8C7FD /* HomeViewController.swift */,
 				C84D10281FA787860040B09B /* Main.storyboard */,
 				C84D102B1FA787860040B09B /* Assets.xcassets */,
 				C84D102D1FA787860040B09B /* LaunchScreen.storyboard */,
@@ -260,10 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C84D10391FA7A4CB0040B09B /* RegistrationViewController.swift in Sources */,
-				C84D103B1FA7A4D90040B09B /* HomeScreenViewController.swift in Sources */,
+				C84D103B1FA7A4D90040B09B /* ProfileViewController.swift in Sources */,
 				C84D10371FA788640040B09B /* LoginViewController.swift in Sources */,
 				C84D103F1FA7BD740040B09B /* References.swift in Sources */,
 				C84D10251FA787860040B09B /* AppDelegate.swift in Sources */,
+				1968A8031FACCFE100E8C7FD /* HomeViewController.swift in Sources */,
 				19FD31361FAC58CB0091D2CE /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

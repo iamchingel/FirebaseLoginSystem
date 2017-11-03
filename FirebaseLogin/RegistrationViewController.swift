@@ -62,7 +62,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 // successfully saved user details
-                self.performSegue(withIdentifier: "RegistrationComplete", sender: self)
+                self.performSegue(withIdentifier: "RegistrationToHomeVC", sender: self)
             })
         }
         
